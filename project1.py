@@ -27,10 +27,6 @@ model = Sequential()
 
 model.add(Convolution2D(filters=5, kernel_size=(5,5), activation='relu', input_shape=input_shape  ))
 model.add(MaxPooling2D(pool_size=(3,3)))
-model.add(Convolution2D(filters=10, kernel_size=(5,5), activation='relu'  ))
-model.add(MaxPooling2D(pool_size=(3,3)))
-model.add(Convolution2D(filters=10, kernel_size=(5,5), activation='relu'  ))
-model.add(MaxPooling2D(pool_size=(3,3)))
 model.add(Flatten())
 
 model.add(Dense(units=32, activation='relu'))
@@ -39,14 +35,14 @@ model.add(Dense(units=y_train.shape[1], activation='softmax'))
 model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
     
 print(model.summary())
-Trained_model = model.fit(x_train, y_train, epochs=3, validation_data=(x_test, y_test) ,)
+Trained_model = model.fit(x_train, y_train, epochs=1, validation_data=(x_test, y_test) ,)
 model.save("mnist.h5")
 
 scores = model.evaluate(x_test, y_test, verbose=1)
 print('Test loss:', scores[0])
 print('Test accuracy:', scores[1])
 
-acc=Trained_model.history['accuracy'][0]*100
+acc=Trained_model.history['accuracy'][-1]*100
 print('accuracy:',acc)
 int_acc=int(acc)
 f=open("model_accuracy.txt",'w')
