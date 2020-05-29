@@ -25,7 +25,7 @@ y_test = np_utils.to_categorical(y_test)
 
 model = Sequential()
 
-model.add(Convolution2D(filters=5, kernel_size=(5,5), activation='relu', input_shape=input_shape   ))
+model.add(Convolution2D(filters=5, kernel_size=(5,5), activation='relu', input_shape=input_shape  ))
 model.add(MaxPooling2D(pool_size=(3,3)))
 model.add(Flatten())
 
@@ -37,7 +37,7 @@ model.compile(loss = 'categorical_crossentropy',
               metrics = ['accuracy'])
     
 print(model.summary())
-Trained_model = model.fit(x_train, y_train, epochs=1, validation_data=(x_test, y_test), )
+Trained_model = model.fit(x_train, y_train, epochs=1, validation_data=(x_test, y_test) ,)
 model.save("mnist.h5")
 
 scores = model.evaluate(x_test, y_test, verbose=1)
