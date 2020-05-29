@@ -32,9 +32,7 @@ model.add(Flatten())
 model.add(Dense(units=32, activation='relu'))
 model.add(Dense(units=y_train.shape[1], activation='softmax'))
            
-model.compile(loss = 'categorical_crossentropy',
-              optimizer = 'adam',
-              metrics = ['accuracy'])
+model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
     
 print(model.summary())
 Trained_model = model.fit(x_train, y_train, epochs=1, validation_data=(x_test, y_test) ,)
